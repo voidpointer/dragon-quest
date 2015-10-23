@@ -1,0 +1,193 @@
+body {
+	background-color:#666;
+}
+
+audio {
+	position:absolute;bottom:0;
+}
+
+
+@keyframes movement {
+ 0% {
+   left:256px;
+   top:0;
+ }
+ 25% {
+   left:256px;
+   top:256px;
+ }
+ 50% {
+   left:0;
+   top:256px;
+ }
+ 75% {
+   left:0;
+   top:0;
+ }
+ 100% {
+   left:256px;
+   top:0;
+ }
+}
+
+#hero {
+	position:absolute;
+	animation-name: movement;
+	animation-timing-function: linear;
+	animation-iteration-count: infinite;
+	animation-duration: 8s;
+}
+
+
+
+@keyframes hero_s_vis {
+ 0% {
+   opacity:1;
+ }
+ 24% {
+   opacity:1;
+ }
+ 25% {
+   opacity:0;
+ }
+ 99% {
+   opacity:0;
+ }
+ 100% {
+   opacity:1;
+ }
+}
+
+@keyframes hero_w_vis {
+ 0% {
+   opacity:0;
+ }
+ 24% {
+   opacity:0;
+ }
+ 25% {
+   opacity:1;
+ }
+ 49% {
+   opacity:1;
+ }
+ 50% {
+ 	opacity:0;
+ }
+ 100% {
+   opacity:0;
+ }
+}
+
+@keyframes hero_n_vis {
+ 0% {
+   opacity:0;
+ }
+ 49% {
+   opacity:0;
+ }
+ 50% {
+   opacity:1;
+ }
+ 74% {
+   opacity:1;
+ }
+ 75% {
+ 	opacity:0;
+ }
+ 100% {
+   opacity:0;
+ }
+}
+
+@keyframes hero_e_vis {
+ 0% {
+   opacity:0;
+ }
+ 74% {
+   opacity:0;
+ }
+ 75% {
+   opacity:1;
+ }
+ 99% {
+   opacity:1;
+ }
+ 100% {
+ 	opacity:0;
+ }
+}
+
+#hero_s, #hero_w, #hero_n, #hero_e {
+	position:relative;
+}
+#hero div {
+	animation-timing-function: ease-in-out;
+	animation-iteration-count: infinite;
+	animation-duration: 8s;
+}
+#hero #hero_s {
+	animation-name: hero_s_vis;
+}
+#hero #hero_w {
+	animation-name: hero_w_vis;
+}
+#hero #hero_n {
+	animation-name: hero_n_vis;
+}
+#hero #hero_e {
+	animation-name: hero_e_vis;
+}
+
+
+
+
+@keyframes step_1_vis {
+ 0% {
+   opacity:1;
+ }
+ 49% {
+   opacity:1;
+ }
+ 50% {
+   opacity:0;
+ }
+ 99% {
+   opacity:0;
+ }
+ 100% {
+   opacity:1;
+ }
+}
+
+@keyframes step_2_vis {
+ 0% {
+   opacity:0;
+ }
+ 49% {
+   opacity:0;
+ }
+ 50% {
+   opacity:1;
+ }
+ 99% {
+   opacity:1;
+ }
+ 100% {
+   opacity:0;
+ }
+}
+
+#hero div canvas {
+	position:absolute;
+	animation-timing-function: ease-in-out;
+	animation-iteration-count: infinite;
+	animation-duration: 0.5s;
+}
+#hero div canvas:nth-of-type(1) {
+	animation-name: step_1_vis;
+}
+#hero div canvas:nth-of-type(2) {
+	animation-name: step_2_vis;
+}
+

@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script>
+		<style>
+		body {
+			background-color:#666;
+		}
+		#sprites {
+			display:inline;
+		}
+		</style>
+		<script>
+		window.onload = function() {
+			// copy image from an img element to a canvas element
+		    var canvas = document.getElementById("canvas");
+		    var context = canvas.getContext("2d");
+		    var img = document.getElementById("spritesheet");
+		    context.drawImage(img, 0, 0);
+
+		    // get sprite data for each sprite that we want
+		    createSprite(context, 4, 58, 16, 16, "hero_s1");
+		    createSprite(context, 22, 58, 16, 16, "hero_s2");
+		    createSprite(context, 40, 58, 12, 16, "hero_w1");
+		    createSprite(context, 53, 58, 12, 16, "hero_w2");
+		    createSprite(context, 67, 58, 16, 16, "hero_n1");
+		    createSprite(context, 85, 58, 16, 16, "hero_n2");
+		    createSprite(context, 103, 58, 12, 16, "hero_e1");
+		    createSprite(context, 116, 58, 12, 16, "hero_e2");
+		}
+		function createSprite(context, x, y, w, h, canvasId)
+		{
+		    imgd = context.getImageData(x, y, w, h);
+
+		    // make cyan pixels completely transparent
+		    for(var i = 0; i < imgd.data.length; i += 4)
+		    {
+		    	if (imgd.data[i] == 0 && imgd.data[i+1] == 128 && imgd.data[i+2] == 128)
+		    	{
+		    		imgd.data[i+3] = 0;
+		    	}
+		    }
+
+		    // not really necessary, but show sprites on page
+		    var newCanvas = $("<canvas>").attr("id", canvasId).attr("width", w).attr("height", h)[0];
+		    var newContext = newCanvas.getContext("2d");
+		    newContext.putImageData(imgd, 0, 0);
+		    $("#sprites").append(newCanvas);
+
+		    // output sprite data that we can put into a javascript file
+		    $("textarea").html($("textarea").html() + "var " + canvasId + " = " + JSON.stringify(Array.prototype.slice.call(imgd.data)) + ";&#13;&#10;&#13;&#10;");
+		}
+		</script>
+	</head>
+	<body>
+		<!-- image source:  http://www.realmofdarkness.net/dq/games/nes/dw/sprites -->
+		<img src="characters.png" id="spritesheet">
+		<canvas id="canvas" width="170" height="323"></canvas>
+		<div id="sprites"></div>
+		<textarea cols="160" rows="30"></textarea>
+	</body>
+</html>
